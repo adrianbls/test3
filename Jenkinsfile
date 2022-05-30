@@ -1,6 +1,8 @@
 pipeline {
     agent any
- 
+     triggers {
+        cron('H/5 * * * *') //Cada 5 minutos
+    }
     stages {
         stage('Checkout GITHUB') {
             steps {
@@ -12,8 +14,15 @@ pipeline {
             }
         }
             stage('Deployment') {
-                steps {
-                    echo ">> Ejecutar Deploy "
+            when {
+                anyOf {
+                    changeset "src/**"
+                }
+            }
+            steps {
+                //sh "make build"
+                //sh "make start"
+                echo ">> Ejecutar Deploy "
                 }
         }
     }
