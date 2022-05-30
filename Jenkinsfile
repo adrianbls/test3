@@ -2,19 +2,19 @@ pipeline {
     agent any
  
     stages {
-        stage('Checkout GIT') {
+        stage('Checkout GITHUB') {
             steps {
                 checkout([
                  $class: 'GitSCM',
-                 branches: [[name: 'master']],
+                 branches: [[name: 'main']],
                  userRemoteConfigs: [[url: 'https://github.com/adrianbls/Test_jenkins.git']]
                 ])
             }
         }
-         stage('Deployment') {
-            steps {
-                echo ">> Ejecutar Deploy "
-            }
+            stage('Deployment') {
+                steps {
+                    echo ">> Ejecutar Deploy "
+                }
         }
     }
 
