@@ -5,27 +5,22 @@ pipeline {
     }
  
     stages {
-        /* checkout repo */
-        stage('Checkout SCM') {
+        stage('Checkout GIT') {
             steps {
                 checkout([
                  $class: 'GitSCM',
                  branches: [[name: 'master']],
-                 userRemoteConfigs: [[
-                    url: 'git@github.com:wshihadeh/rabbitmq_client.git',
-                    credentialsId: '',
-                 ]]
+                 userRemoteConfigs: [[url: 'https://github.com/adrianbls/Test_jenkins.git']]
                 ])
             }
         }
-         stage('Do the deployment') {
+         stage('Deployment') {
             steps {
-                echo ">> Run deploy applications "
+                echo ">> Ejecutar Deploy "
             }
         }
     }
- 
-    /* Cleanup workspace */
+
     post {
        always {
            deleteDir()
