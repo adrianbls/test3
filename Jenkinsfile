@@ -1,8 +1,5 @@
 pipeline {
-    /* specify nodes for executing */
-    agent {
-        label 'github-ci'
-    }
+    agent any
  
     stages {
         stage('Checkout GIT') {
